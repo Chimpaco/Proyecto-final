@@ -1,3 +1,7 @@
+"""
+modifique el save para que se guarde la imagen con las ediciones y tambien la rotación para que se pueda seguir rotando
+"""
+
 """-------Imports------"""
 
 
@@ -24,25 +28,22 @@ def open():
 def rotate_img_rigth():
     global image_editable
     global image_edited
-    image_edit_rot_r = image_editable
-    image_edit_rot_r = image_edit_rot_r.rotate(90,expand=True)
-    image_edited = ImageTk.PhotoImage(image_edit_rot_r)
+    image_editable = image_editable.rotate(90,expand=True)
+    image_edited = ImageTk.PhotoImage(image_editable)
     image_label.configure(image=image_edited)
 
 def rotate_img_left():
     global image_editable
     global image_edited
-    image_edit_rot_l = image_editable
-    image_edit_rot_l = image_edit_rot_l.rotate(-90,expand=True)
-    image_edited = ImageTk.PhotoImage(image_edit_rot_l)
+    image_editable = image_editable.rotate(-90,expand=True)
+    image_edited = ImageTk.PhotoImage(image_editable)
     image_label.configure(image=image_edited)
 
 def save():
     global image_editable
     global image_edited
-    image_editable = image_edited
-    image_edit_save = filedialog.asksaveasfilename(initialdir="Ejercicios/image" ,title="Select a folder",filetypes=(("files jpeg","*.jpeg"),))
-    image_editable =image_edited.save(image_edit_save)
+    image_edit_save = filedialog.asksaveasfilename(initialdir="Ejercicios/image" ,title="Select a folder")
+    image_editable.save(f"{image_edit_save}.jpg")
 
 
 """-------Ventana Principal-------"""
